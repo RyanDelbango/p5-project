@@ -12,29 +12,22 @@ const sketch = (p: p5) => {
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
-    p.image(
-      logo,
-      p.windowWidth / 2 - logoWidth / 2,
-      p.windowHeight / 2 - logoHeight / 2
-    );
   };
 
   p.draw = () => {
     if (p.mouseIsPressed) {
+      p.point(p.mouseX, p.mouseY);
       p.fill(0);
-    } else {
-      p.fill(255);
+      p.strokeWeight(30);
     }
-    p.ellipse(p.mouseX, p.mouseY, 80, 80);
+    if (p.keyIsPressed) {
+      p.clear(0, 0, 0, 0);
+      p.background(255);
+    }
   };
 
   p.windowResized = () => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    p.image(
-      logo,
-      p.windowWidth / 2 - logoWidth / 2,
-      p.windowHeight / 2 - logoHeight / 2
-    );
   };
 
   p.keyPressed = () => {};
