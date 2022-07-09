@@ -8,18 +8,17 @@ function getRandomInt(min: number, max: number) {
 }
 
 const sketch = (p: p5) => {
-  let logo: p5.Image;
+  let grass: p5.Image;
   let img: p5.Image;
-  let logoWidth = 250;
-  let logoHeight = 114;
 
   p.preload = () => {
-    logo = p.loadImage('assets/p5js.svg');
+    grass = p.loadImage('assets/grass.jpeg');
     img = p.loadImage('assets/rabbit.png');
   };
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
+    p.background(grass)
   };
   const initial = 10;
   let width = initial;
@@ -27,21 +26,34 @@ const sketch = (p: p5) => {
   const increment = 30;
   let x = getRandomInt(0, p.windowWidth);
   let y = getRandomInt(0, p.windowHeight);
+  let bunnyCount = 1;
   p.draw = () => {
     p.image(img, x, y, width, height)
     p.mouseWheel = (event: any) => {
       x = getRandomInt(0, p.windowWidth);
       y = getRandomInt(0, p.windowHeight);
-      if (event?.delta > 0) {
+      bunnyCount += 1;
+      if (event?.delta < 0) {
         width += increment;
         height += increment;
-      } else if (event?.delta < 0) {
-        width -= increment;
-        height -= increment;
+      } else if (event?.delta > 0) {
+        if (width > 0) {
+          width -= increment;
+        }
+        if (height > 0) {
+          height -= increment;
+        }
       }
     };
     if (p.keyIsPressed) {
       p.clear(0,0,0,0);
+      p.background(grass)
+      bunnyCount = 1;
+      width = initial;
+      height = initial;
+    }
+    p.mouseClicked = () => {
+      alert(`Current Bunny Size: ${height}x${width} \nBunny Count: ${bunnyCount}`);
     }
   };
 
