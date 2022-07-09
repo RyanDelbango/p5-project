@@ -29,6 +29,13 @@ const sketch = (p: p5) => {
   let bunnyCount = 1;
   p.draw = () => {
     p.image(img, x, y, width, height)
+    p.windowResized = () => {
+      p.clear(0,0,0,0)
+      p.background(grass);
+      bunnyCount = 1;
+      width = initial;
+      height = initial;
+    }
     p.mouseWheel = (event: any) => {
       x = getRandomInt(height > p.windowHeight/2 ? -300 : 0, p.windowWidth);
       y = getRandomInt(height > p.windowHeight/2 ? -300 : 0, p.windowHeight);
