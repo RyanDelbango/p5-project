@@ -23,30 +23,32 @@ const sketch = (p: p5) => {
   const initial = 10;
   let width = initial;
   let height = initial;
-  const increment = 30;
+  const increment = 20;
   let x = getRandomInt(0, p.windowWidth);
   let y = getRandomInt(0, p.windowHeight);
   let bunnyCount = 1;
   p.draw = () => {
     p.image(img, x, y, width, height)
     p.mouseWheel = (event: any) => {
-      x = getRandomInt(0, p.windowWidth);
-      y = getRandomInt(0, p.windowHeight);
+      x = getRandomInt(height > p.windowHeight/2 ? -300 : 0, p.windowWidth);
+      y = getRandomInt(height > p.windowHeight/2 ? -300 : 0, p.windowHeight);
       bunnyCount += 1;
       if (event?.delta < 0) {
-        width += increment;
-        height += increment;
+        if (height < p.windowHeight*.75) {
+          width += increment;
+          height += increment;
+        }
       } else if (event?.delta > 0) {
-        if (width > 0) {
+        if (width > 10) {
           width -= increment;
         }
-        if (height > 0) {
+        if (height > 10) {
           height -= increment;
         }
       }
     };
     if (p.keyIsPressed) {
-      p.clear(0,0,0,0);
+      p.clear(0, 0, 0, 0);
       p.background(grass)
       bunnyCount = 1;
       width = initial;
