@@ -1,6 +1,7 @@
 {
   "name": "p5.js-es6",
   "version": "1.0.0",
+  "main": "server.js",
   "description": "Boilerplate for writing p5.js sketches in es6 with babel, webpack and sass.",
   "engines": {
     "node": "16.15.0"
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/mkontogiannis/p5.js-es6#README",
   "dependencies": {
+    "express": "^4.18.1",
     "p5": "1.4.1"
   },
   "devDependencies": {
