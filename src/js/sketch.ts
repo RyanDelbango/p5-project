@@ -13,16 +13,29 @@ const sketch = (p: p5) => {
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
   };
-
+  const initial = 10;
+  let width = initial;
+  let height = initial;
+  const increment = 30;
   p.draw = () => {
-    if (p.mouseIsPressed) {
-      p.point(p.mouseX, p.mouseY);
-      p.fill(0);
-      p.strokeWeight(30);
-    }
-    if (p.keyIsPressed) {
+    p.rect(initial, initial, width, height)
+    p.mouseWheel = (event: any) => {
       p.clear(0, 0, 0, 0);
-      p.background(255);
+      if (event?.delta < 0) {
+        if (width < p.windowWidth - (initial + 10)) {
+          width += increment;
+        };
+        if (height < p.windowHeight - (initial + 10)) {
+          height += increment;
+        };
+      } else if (event?.delta > 0) {
+        if (width > initial) {
+          width -= increment;
+        }
+        if (height > initial) {
+          height -= increment;
+        }
+      }
     }
   };
 
@@ -30,7 +43,7 @@ const sketch = (p: p5) => {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 
-  p.keyPressed = () => {};
+  p.keyPressed = () => { };
 };
 
 new p5(sketch);
