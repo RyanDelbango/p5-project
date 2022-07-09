@@ -2,6 +2,9 @@
   "name": "p5.js-es6",
   "version": "1.0.0",
   "description": "Boilerplate for writing p5.js sketches in es6 with babel, webpack and sass.",
+  "engines": {
+    "node": "16.15.0"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "dev": "webpack serve --progress --color",
