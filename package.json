@@ -7,7 +7,8 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "start": "webpack serve --progress --color",
+    "dev": "webpack serve --progress --color",
+    "start": "node server.js",
     "prebuild": "npm install",
     "build": "npm run clean && webpack --progress --color --mode=production",
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
